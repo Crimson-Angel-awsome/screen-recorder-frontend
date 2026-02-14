@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groove</title>
+  <link rel="stylesheet" href="/assets/styles/style.css">
 </head>
 <body>
-    
+
+<main class="s-l-pro">
+  <section class="capture">
+    <h1><a href="index.html">Groove</a></h1>
+
+    <!-- Tabs -->
+    <section class="tabs">
+      <div class="switch-tabs">
+        <button class="tab-active" data-tab="login">Log in</button>
+        <button class="tab" data-tab="signup">Sign up</button>
+      </div>
+    </section>
+
+    <!-- Login -->
+    <section class="tab-content tab-show" id="login">
+      <h2>Log in</h2>
+      <form>
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" required>
+
+        <label>Password</label>
+        <input type="password" placeholder="password" required>
+
+        <button type="submit" class="btn-submit">Login</button>
+      </form>
+    </section>
+
+    <!-- Signup -->
+    <section class="tab-content" id="signup">
+      <h2>Sign up</h2>
+      <form>
+        <label>Username</label>
+        <input type="text" placeholder="e.g John Doe" required>
+
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" required>
+
+        <label>Password</label>
+        <input type="password" placeholder="password" required>
+
+        <button type="submit" class="btn-submit">Sign up</button>
+      </form>
+    </section>
+
+  </section>
+</main>
+
+<script src="/assets/script/script.js"></script>
 </body>
 </html>
