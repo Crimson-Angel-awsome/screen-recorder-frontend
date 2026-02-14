@@ -1,15 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Screen Recorder</title>
-  <link rel="stylesheet" href="/assets/styles/record.css">
-  <script src="/assets/script/record.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Recorder Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Screen Recorder</h1>
-  <button id="startBtn">Start Recording</button>
-  <button id="stopBtn" disabled>Stop Recording</button>
-  <script src="script.js"></script>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <h1>Screen Recorder</h1>
+            </div>
+            <div class="user-info">
+                <span id="userEmail"></span>
+                <button class="btn-secondary" id="logoutBtn">Logout</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Recording Controls Section -->
+            <section class="recording-section">
+                <div class="card">
+                    <h2>Record Your Screen</h2>
+                    <div class="recording-controls">
+                        <button class="btn-primary" id="startRecordingBtn">
+                            <span class="icon">⏺</span> Start Recording
+                        </button>
+                        <button class="btn-danger" id="stopRecordingBtn" disabled>
+                            <span class="icon">⏹</span> Stop Recording
+                        </button>
+                    </div>
+                    <div class="recording-status">
+                        <span id="recordingStatus">Ready to record</span>
+                        <span id="recordingTimer">00:00:00</span>
+                    </div>
+                    <div class="preview-container">
+                        <video id="previewVideo" autoplay muted></video>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Actions Section -->
+            <section class="video-actions-section">
+                <div class="card">
+                    <h2>Current Recording Actions</h2>
+                    <div class="action-buttons">
+                        <button class="btn-secondary" id="saveVideoBtn" disabled>
+                            <span class="icon">💾</span> Save Video
+                        </button>
+                        <button class="btn-secondary" id="renameVideoBtn" disabled>
+                            <span class="icon">✏️</span> Rename Recording
+                        </button>
+                        <button class="btn-secondary" id="copyLinkBtn" disabled>
+                            <span class="icon">🔗</span> Copy/Share Link
+                        </button>
+                    </div>
+                    <div id="videoInfo" class="video-info"></div>
+                </div>
+            </section>
+
+            <!-- Video Library Section -->
+            <section class="library-section">
+                <div class="card">
+                    <div class="library-header">
+                        <h2>Recording Library</h2>
+                        <button class="btn-secondary" id="refreshLibraryBtn">
+                            <span class="icon">🔄</span> Refresh
+                        </button>
+                    </div>
+                    <div class="library-filters">
+                        <input type="text" id="searchInput" placeholder="Search recordings...">
+                        <select id="sortSelect">
+                            <option value="date-desc">Newest First</option>
+                            <option value="date-asc">Oldest First</option>
+                            <option value="name-asc">Name A-Z</option>
+                            <option value="name-desc">Name Z-A</option>
+                        </select>
+                    </div>
+                    <div id="libraryContainer" class="library-container">
+                        <!-- Library items will be dynamically loaded here -->
+                    </div>
+                    <div id="emptyLibrary" class="empty-state">
+                        <p>No recordings yet. Start recording to build your library!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Rename -->
+    <div id="renameModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rename Recording</h2>
+            <input type="text" id="renameInput" placeholder="Enter new name">
+            <div class="modal-actions">
+                <button class="btn-primary" id="confirmRenameBtn">Rename</button>
+                <button class="btn-secondary" id="cancelRenameBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="/assets/script/record.js"></script>
 </body>
 </html>
