@@ -28,7 +28,7 @@ class AuthService {
                 // Successful signup - redirect to login
                 showToast('Account created successfully! Please login.', 'success');
                 // Redirect to login page
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
                 return data;
             } else {
                 throw new Error(data.message || 'Signup failed');
