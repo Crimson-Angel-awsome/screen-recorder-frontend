@@ -4,7 +4,7 @@
 
 class AuthService {
     constructor() {
-        this.API_BASE_URL = 'YOUR_API_BASE_URL_HERE'; // Replace with your actual API URL
+        this.API_BASE_URL = 'http://127.0.0.1:8000';
         this.TOKEN_KEY = 'auth_token';
         this.USER_KEY = 'user_data';
     }
@@ -154,7 +154,7 @@ class ScreenRecorder {
         this.startTime = null;
         this.timerInterval = null;
         this.currentRecording = null;
-        this.API_BASE_URL = 'YOUR_API_BASE_URL_HERE'; // Replace with your actual API URL
+        this.API_BASE_URL = 'http://127.0.0.1:8000'; // Replace with your actual API URL
     }
 
     // ========================================
