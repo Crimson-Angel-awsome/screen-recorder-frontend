@@ -331,7 +331,7 @@ class ScreenRecorder {
             const token = authService.getToken();
 
             // Send to server
-            const response = await fetch(`${this.API_BASE_URL}/videos/save`, {
+            const response = await fetch(`${this.API_BASE_URL}/recordings/upload`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -396,7 +396,7 @@ class ScreenRecorder {
 
             // Send rename request to server
             const token = authService.getToken();
-            const response = await fetch(`${this.API_BASE_URL}/videos/${targetId}/rename`, {
+            const response = await fetch(`${this.API_BASE_URL}/recordings/${targetId}/rename`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -441,7 +441,7 @@ class ScreenRecorder {
 
             // Get share link from server
             const token = authService.getToken();
-            const response = await fetch(`${this.API_BASE_URL}/videos/${targetId}/share-link`, {
+            const response = await fetch(`${this.API_BASE_URL}/recordings/${targetId}/upload-link`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -477,7 +477,7 @@ class ScreenRecorder {
 
 class VideoLibrary {
     constructor() {
-        this.API_BASE_URL = 'YOUR_API_BASE_URL_HERE'; // Replace with your actual API URL
+        this.API_BASE_URL = 'http://127.0.0.1:8000'; // Replace with your actual API URL
         this.videos = [];
         this.filteredVideos = [];
     }
@@ -488,7 +488,7 @@ class VideoLibrary {
     async loadLibrary() {
         try {
             const token = authService.getToken();
-            const response = await fetch(`${this.API_BASE_URL}/videos/library`, {
+            const response = await fetch(`${this.API_BASE_URL}/recordings?user_id=${authService.getUserId()}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -565,3 +565,5 @@ class VideoLibrary {
                 this.showRenameModal(videoId);
             });
         });
+    }
+}

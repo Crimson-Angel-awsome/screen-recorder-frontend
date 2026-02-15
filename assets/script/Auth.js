@@ -2,12 +2,8 @@
 // AUTHENTICATION JAVASCRIPT FOR LOGIN & SIGNUP PAGES
 // ============================================================================
 
-// This file should be included in both login.html and signup.html pages
-// It handles the authentication logic without the HTML/CSS for those pages
 
-// Initialize auth service (if not already available)
 if (typeof authService === 'undefined') {
-    // If authService is not loaded from app.js, create a new instance
     const authService = new AuthService();
     window.authService = authService;
 }
@@ -16,7 +12,6 @@ if (typeof authService === 'undefined') {
 // SIGNUP PAGE LOGIC
 // ============================================================================
 
-// Call this function when the signup page loads
 function initSignupPage() {
     // Check if already authenticated
     if (authService.isAuthenticated()) {
@@ -69,18 +64,14 @@ function initSignupPage() {
             // Call signup endpoint
             await authService.signup(userData);
             
-            // Success handled in authService.signup() - will redirect to login
         } catch (error) {
-            // Error handled in authService.signup()
             console.error('Signup failed:', error);
         } finally {
-            // Reset button state
             submitButton.disabled = false;
             submitButton.textContent = originalButtonText;
         }
     });
 
-    // Add "Already have an account? Login" link handler if exists
     const loginLink = document.getElementById('loginLink');
     if (loginLink) {
         loginLink.addEventListener('click', (e) => {
@@ -94,9 +85,9 @@ function initSignupPage() {
 // LOGIN PAGE LOGIC
 // ============================================================================
 
-// Call this function when the login page loads
+
 function initLoginPage() {
-    // Check if already authenticated
+   
     if (authService.isAuthenticated()) {
         window.location.href = 'dashboard.html';
         return;
@@ -104,7 +95,7 @@ function initLoginPage() {
 
     const loginForm = document.getElementById('loginForm');
     
-    if (!loginForm) return; // Not on login page
+    if (!loginForm) return; 
 
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -135,9 +126,9 @@ function initLoginPage() {
             // Call login endpoint
             await authService.login(credentials);
             
-            // Success handled in authService.login() - will redirect to dashboard
+           
         } catch (error) {
-            // Error handled in authService.login()
+            
             console.error('Login failed:', error);
         } finally {
             // Reset button state
@@ -162,37 +153,6 @@ function initLoginPage() {
             e.preventDefault();
             handleForgotPassword();
         });
-    }
-}
-
-// ============================================================================
-// FORGOT PASSWORD LOGIC (OPTIONAL)
-// ============================================================================
-
-async function handleForgotPassword() {
-    const email = prompt('Enter your email address:');
-    
-    if (!email) return;
-
-    try {
-        const response = await fetch(`${authService.API_BASE_URL}/auth/forgot-password`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email: email })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            showToast('Password reset link sent to your email', 'success');
-        } else {
-            throw new Error(data.message || 'Failed to send reset link');
-        }
-    } catch (error) {
-        console.error('Forgot password error:', error);
-        showToast(error.message || 'Failed to send reset link', 'error');
     }
 }
 
